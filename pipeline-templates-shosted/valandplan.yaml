@@ -83,5 +83,5 @@ stages:
                 provider: 'azurerm'
                 command: 'plan'
                 #commandOptions: '-input=false -var "ctrl_password=$(TF_VAR_ctrl_password)" -var "controller_ip=$(TF_VAR_controller_ip)"'
-                commandOptions: '-var "avtx_admin_password=$(ctrl-password)" -var "avtx_controller_ip=$(controller-ip)" -var "avtx_admin_passwd=$(password)'
+                commandOptions: '-var "avtx_admin_password=$(ctrl-password)" -var "avtx_controller_ip=$(controller-ip)" -var "avtx_admin_user=$(username)'
                 environmentServiceNameAzureRM: 'atulavtx-sst2'
