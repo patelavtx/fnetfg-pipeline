@@ -13,7 +13,7 @@ module "mc_transit" {
   enable_transit_firenet = true
   instance_size          = "Standard_B2ms"           # beware of size requirement for insane + firenet
   name                   = "aztransit212"            # sets vnet name
-  gw_name                = "aztransit212-fg"        # sets gw name
+  gw_name                = var.gw_name        # sets gw name
   ha_gw                  = var.ha_gw
   resource_group = "atulrg-customiam"               # If using SP at RG level
 }

@@ -25,6 +25,12 @@ variable "ha_gw" {
 }
 
 
+variable "gw_name" {
+  type    = string
+  default = "aztransit212-fg"
+}
+
+
 #  Firenet variables
 
 variable "firewall_image" {

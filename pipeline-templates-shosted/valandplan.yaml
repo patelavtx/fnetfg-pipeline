@@ -74,6 +74,7 @@ stages:
                 TF_VAR_avtx_controller_ip: $(controller-ip)
                 TF_VAR_fw1_token: $(fw1-token)
                 TF_VAR_fw2_token: $(fw2-token)
+                TF_VAR_gw_name: $(gw-name)
                 #TF_VAR_az_client_id: $(az-client-id)
                 #TF_VAR_az_client_secret: $(az-client-secret)
                 #TF_VAR_tags: $(tags)
