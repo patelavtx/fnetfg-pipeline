@@ -1,0 +1,53 @@
+stages:
+  - stage: deploy
+    jobs:
+      - deployment: deploy_terraform
+        continueOnError: false
+        environment: 'fnet-fg'
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - checkout: self
+                - task: TerraformInstaller@0
+                  displayName: 'TF install'
+                  inputs:
+                    terraformVersion: '1.7.4'
+                  #Azure KEY Vault
+                - task: AzureKeyVault@1
+                  displayName: "Pull KV secrets"
+                  inputs:
+                   ConnectedServiceName: $(service_name)
+                   KeyVaultName: $(key_vault_name)
+                   SecretsFilter: '*'
+                   RunAsPreJob: false     
+                - task: TerraformTaskV3@3
+                  displayName: 'TF init'
+                  inputs:
+                    provider: 'azurerm'
+                    command: 'init'
+                    backendServiceArm: 'atulavtx-sst2'
+                    backendAzureRmResourceGroupName: 'atulrg-ado'
+                    backendAzureRmStorageAccountName: 'atulado'
+                    backendAzureRmContainerName: 'fnet-fg'
+                    backendAzureRmKey: 'fnet-fg.tfstate'
+                - task: TerraformTaskV2@2
+                  displayName: 'TF apply'
+                  env:
+                    TF_VAR_azure_region: $(region)
+                    TF_VAR_azure_account: $(account)
+                    TF_VAR_transit_gw: $(transit-gw)
+                    TF_VAR_ha_gw: $(ha-gw)
+                    TF_VAR_avtx_admin_passwordd: $(ctrl-password)
+                    TF_VAR_avtx_controller_ip: $(controller-ip)
+                    TF_VAR_fw1_token: $(fw1-token)
+                    TF_VAR_fw2_token: $(fw2-token)
+                    #TF_VAR_az_client_id: $(az-client-id)
+                    #TF_VAR_az_client_secret: $(az-client-secret)
+                  inputs:
+                    provider: 'azurerm'
+                    command: 'apply'
+                    #commandOptions: '-var "ctrl_password=$(TF_VAR_ctrl_password)" -var "controller_ip=$(TF_VAR_controller_ip)"'
+                    commandOptions: '-var "avtx_admin_password=$(ctrl-password)" -var "avtx_controller_ip=$(controller-ip)"'
+
+                    environmentServiceNameAzureRM: 'atulavtx-sst2'

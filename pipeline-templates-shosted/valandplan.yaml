@@ -1,0 +1,86 @@
+stages:
+- stage: validate
+  jobs:
+  - job: validate
+    continueOnError: false
+    steps:
+    - task: TerraformInstaller@0
+      displayName: 'TF install'
+      inputs:
+        terraformVersion: '1.3.6'
+      #Azure KEY Vault
+    - task: AzureKeyVault@1
+      displayName: "Pull KV secrets"
+      inputs:
+        ConnectedServiceName: $(service_name)
+        KeyVaultName: $(key_vault_name)
+        SecretsFilter: '*'
+        RunAsPreJob: false     
+    - task: TerraformTaskV3@3
+      displayName: 'TF  init'
+      inputs:
+        provider: 'azurerm'
+        command: 'init'
+        backendServiceArm: 'atulavtx-sst2'
+        backendAzureRmResourceGroupName: 'atulrg-ado'
+        backendAzureRmStorageAccountName: 'atulado'
+        backendAzureRmContainerName: 'fnet-fg'
+        backendAzureRmKey: 'fnet-fg.tfstate'
+    - task: TerraformTaskV3@3
+      displayName: 'TF validate'
+      inputs:
+        provider: 'azurerm'
+        command: 'validate'
+- stage: plan
+  jobs:
+    - deployment: plan
+      continueOnError: false
+      environment: 'fnet-fg'
+      strategy:
+       runOnce:
+         deploy:
+          steps:
+            - checkout: self
+            - task: TerraformInstaller@0
+              displayName: 'TF install'
+              inputs:
+                terraformVersion: '1.3.6'
+             #Azure KEY Vault
+            - task: AzureKeyVault@1
+              displayName: "Pull KV secrets"
+              inputs:
+                ConnectedServiceName: $(service_name)
+                KeyVaultName: $(key_vault_name)
+                SecretsFilter: '*'
+                RunAsPreJob: false     '
+            - task: TerraformTaskV3@3
+              displayName: 'TF init'
+              inputs:
+                provider: 'azurerm'
+                command: 'init'
+                backendServiceArm: 'atulavtx-sst2'
+                backendAzureRmResourceGroupName: 'atulrg-ado'
+                backendAzureRmStorageAccountName: 'atulado'
+                backendAzureRmContainerName: 'fnet-fg'
+                backendAzureRmKey: 'fnet-fg.tfstate'
+            - task: TerraformTaskV3@3
+              displayName: 'TF plan'
+              env:
+                TF_VAR_azure_region: $(region)
+                TF_VAR_azure_account: $(account)
+                TF_VAR_transit_gw: $(transit-gw)
+                TF_VAR_ha_gw: $(ha-gw)
+                TF_VAR_avtx_admin_passwordd: $(ctrl-password)
+                TF_VAR_avtx_controller_ip: $(controller-ip)
+                TF_VAR_fw1_token: $(fw1-token)
+                TF_VAR_fw2_token: $(fw2-token)
+                #TF_VAR_az_client_id: $(az-client-id)
+                #TF_VAR_az_client_secret: $(az-client-secret)
+                #TF_VAR_tags: $(tags)
+              inputs:
+                provider: 'azurerm'
+                command: 'plan'
+                #commandOptions: '-input=false -var "ctrl_password=$(TF_VAR_ctrl_password)" -var "controller_ip=$(TF_VAR_controller_ip)"'
+                commandOptions: '-var "avtx_admin_password=$(ctrl-password)" -var "avtx_controller_ip=$(controller-ip)"'
+
+                environmentServiceNameAzureRM: 'atulavtx-sst2'

@@ -1,0 +1,20 @@
+trigger:
+- main
+
+pool:
+  name: azdevops1
+  demands:
+    - agent.name -equals atulvm-devops
+
+variables:
+- group: fnet-fg
+
+stages:
+- template: pipeline-templates-shosted/startselfhost.yaml
+- template: pipeline-templates-shosted/addnsg.yaml
+- template: pipeline-templates-shosted/valandplan.yaml
+- template: pipeline-templates-shosted/approval.yaml
+- template: pipeline-templates-shosted/apply.yaml
+- template: pipeline-templates-shosted/delnsg.yaml
+- template: pipeline-templates-shosted/stopselfhost.yaml
+
