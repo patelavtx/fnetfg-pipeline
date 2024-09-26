@@ -70,9 +70,9 @@ stages:
                 TF_VAR_azure_account: $(account)
                 TF_VAR_transit_gw: $(transit-gw)
                 TF_VAR_ha_gw: $(ha-gw)
-                #TF_VAR_password: $(ctrl-password)
-                #TF_VAR_controller_ip: $(controller-ip)
-                #TF_VAR_username: $(username)
+                TF_VAR_password: $(ctrl-password)
+                TF_VAR_controller_ip: $(controller-ip)
+                TF_VAR_username: $(username)
                 TF_VAR_fw1_token: $(fw1-token)
                 TF_VAR_fw2_token: $(fw2-token)
                 TF_VAR_gw_name: $(gw-name)
@@ -83,5 +83,5 @@ stages:
                 provider: 'azurerm'
                 command: 'plan'
                 #commandOptions: '-input=false -var "ctrl_password=$(TF_VAR_ctrl_password)" -var "controller_ip=$(TF_VAR_controller_ip)"'
-                commandOptions: '-var "avtx_admin_password=$(ctrl-password)" -var "avtx_controller_ip=$(controller-ip)" -var "avtx_admin_user=$(username)'
+                #commandOptions: '-var "avtx_admin_password=$(ctrl-password)" -var "avtx_controller_ip=$(controller-ip)" -var "avtx_admin_user=$(username)'
                 environmentServiceNameAzureRM: 'atulavtx-sst2'

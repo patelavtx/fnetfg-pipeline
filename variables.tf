@@ -1,12 +1,12 @@
-variable "avtx_controllerip" {
+variable "controller_ip" {
   type = string
 }
 
-variable "avtx_admin_user" {
+variable "username" {
   type = string
 }
 
-variable "avtx_admin_password" {
+variable "password" {
   type = string
 }
 

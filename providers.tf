@@ -1,7 +1,7 @@
 provider "aviatrix" {
-  controller_ip           = var.avtx_controllerip
-  username                = var.avtx_admin_user
-  password                = var.avtx_admin_password
+  controller_ip           = var.controller_ip
+  username                = var.username
+  password                = var.password
   skip_version_validation = false
 }
 
