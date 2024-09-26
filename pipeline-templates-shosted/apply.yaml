@@ -40,6 +40,7 @@ stages:
                     TF_VAR_ha_gw: $(ha-gw)
                     TF_VAR_avtx_admin_passwordd: $(ctrl-password)
                     TF_VAR_avtx_controller_ip: $(controller-ip)
+                    TF_VAR_avtx_admin_password: $(username)
                     TF_VAR_fw1_token: $(fw1-token)
                     TF_VAR_fw2_token: $(fw2-token)
                     TF_VAR_gw_name: $(gw-name)
