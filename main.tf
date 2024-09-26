@@ -18,7 +18,7 @@ module "mc_transit" {
   resource_group = "atulrg-customiam"               # If using SP at RG level
 }
 
-/*
+
 module "firenet_1" {
   source         = "terraform-aviatrix-modules/mc-firenet/aviatrix"
   version        = "1.5.0"
@@ -60,4 +60,3 @@ data "aviatrix_firenet_vendor_integration" "fw1" {
   depends_on = [ time_sleep.wait_90_seconds ]
 
 }
-*/
