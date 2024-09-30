@@ -52,7 +52,7 @@ data "aviatrix_firenet_vendor_integration" "fw1" {
   public_ip     = module.firenet_1.aviatrix_firewall_instance[0].public_ip
   #username      = "fwadmin"                                                # REST_API user or admin for PA
   #password      = module.firenet_1.aviatrix_firewall_instance[0].password
-  username      = "api-admin"
+  username      = "apiadmin"
   api_token     = var.fw1_token                                    # Fortigate REST_API user token for FW1
   firewall_name = module.firenet_1.aviatrix_firewall_instance[0].firewall_name
   #save          = true                                            #  Get error on saving vendor info - permissions?
