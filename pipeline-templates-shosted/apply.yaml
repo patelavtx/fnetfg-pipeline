@@ -29,8 +29,8 @@ stages:
                     backendServiceArm: 'atulavtx-sst2'
                     backendAzureRmResourceGroupName: 'atulrg-ado'
                     backendAzureRmStorageAccountName: 'atulado'
-                    backendAzureRmContainerName: 'fnet-fg'
-                    backendAzureRmKey: 'fnet-fg.tfstate'
+                    backendAzureRmContainerName: 'ado-fnetfg'
+                    backendAzureRmKey: 'fnetfg.tfstate'
                 - task: TerraformTaskV2@2
                   displayName: 'TF apply'
                   env:
