@@ -19,6 +19,7 @@ module "mc_transit" {
   learned_cidr_approval = true
   learned_cidrs_approval_mode = "gateway"
   enable_egress_transit_firenet = false
+  connected_transit = "false"  #  needed to remove egress ^^
 }
 
 
