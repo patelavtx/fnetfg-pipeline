@@ -78,9 +78,9 @@ stages:
                 TF_VAR_gw_name: $(gw-name)
                 TF_VAR_firewall_image: $(firewall-image)
                 # can use below - https://registry.terraform.io/providers/AviatrixSystems/aviatrix/latest/docs#environment-variables
-                AVIATRIX_CONTROLLER_IP: $(controller-ip)
-                AVIATRIX_PASSWORD: $(ctrl-password)
-                AVIATRIX_USERNAME: $(username)
+                #AVIATRIX_CONTROLLER_IP: $(controller-ip)
+                #AVIATRIX_PASSWORD: $(ctrl-password)
+                #AVIATRIX_USERNAME: $(username)
                 #TF_VAR_az_client_id: $(az-client-id)
                 #TF_VAR_az_client_secret: $(az-client-secret)
                 #TF_VAR_tags: $(tags)
