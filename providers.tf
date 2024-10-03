@@ -1,12 +1,13 @@
-
+/*
 provider "aviatrix" {
   controller_ip           = var.controller_ip
   username                = var.username
   password                = var.password
   skip_version_validation = false
 }
+*/
 
-/*
+
 
 provider "aviatrix" {
   controller_ip           = var.avtx_controller_ip
@@ -14,4 +15,3 @@ provider "aviatrix" {
   password                = var.avtx_admin_password
   skip_version_validation = false
 }
-*/
