@@ -50,7 +50,7 @@ stages:
                   inputs:
                     provider: 'azurerm'
                     command: 'apply'
-                    #commandOptions: '-var "ctrl_password=$(TF_VAR_ctrl_password)" -var "controller_ip=$(TF_VAR_controller_ip)"'
+                    commandOptions: '-input=false -var "ctrl_password=$(TF_VAR_password)" -var "controller_ip=$(TF_VAR_controller_ip)" -var "username=$(TF_VAR_username)"'
                     #commandOptions: '-var "avtx_admin_password=$(ctrl-password)" -var "avtx_controller_ip=$(controller-ip)" -var "avtx_admin_user=$(username)'
                     #commandOptions: '-var "password=$(ctrl-password)" -var "controller_ip=$(controller-ip)"'
 

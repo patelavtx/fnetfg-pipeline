@@ -1,3 +1,4 @@
+
 variable "controller_ip" {
   type = string
 }
@@ -10,6 +11,22 @@ variable "password" {
   type = string
 }
 
+/*
+# test alternate provider vars
+variable "avtx_controller_ip" {
+  type = string
+}
+
+variable "avtx_admin_user" {
+  type = string
+}
+
+variable "avtx_admin_password" {
+  type = string
+}
+*/
+
+#==============
 variable "azure_account" {
   type = string
 }
