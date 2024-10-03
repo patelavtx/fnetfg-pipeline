@@ -18,7 +18,7 @@ module "mc_transit" {
   resource_group = "atulrg-customiam"               # If using SP at RG level
   learned_cidr_approval = true
   learned_cidrs_approval_mode = "gateway"
-  enable_egress_transit_firenet = true
+  #enable_egress_transit_firenet = true
 }
 
 
