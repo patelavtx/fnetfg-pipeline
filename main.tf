@@ -1,7 +1,7 @@
 # https://aviatrix.atlassian.net/wiki/spaces/SEA/pages/1779302805/Fortinet
 # Bootstrap - https://read.docs.aviatrix.com/HowTos/fortigate_bootstrap_example_azure.html
 
-/*
+
 # (A)  Transit + firenet
 module "mc_transit" {
   source                 = "terraform-aviatrix-modules/mc-transit/aviatrix"
@@ -19,6 +19,7 @@ module "mc_transit" {
 }
 
 
+/*
 module "firenet_1" {
   source         = "terraform-aviatrix-modules/mc-firenet/aviatrix"
   version        = "1.5.0"
