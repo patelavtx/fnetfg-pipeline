@@ -46,15 +46,15 @@ stages:
                     TF_VAR_gw_name: $(gw-name)
                     TF_VAR_firewall_image: $(firewall-image)
                     # can use below - https://registry.terraform.io/providers/AviatrixSystems/aviatrix/latest/docs#environment-variables
-                    #AVIATRIX_CONTROLLER_IP: $(controller-ip)
-                    #AVIATRIX_PASSWORD: $(ctrl-password)
-                    #AVIATRIX_USERNAME: $(username)
+                    AVIATRIX_CONTROLLER_IP: $(controller-ip)
+                    AVIATRIX_PASSWORD: $(ctrl-password)
+                    AVIATRIX_USERNAME: $(username)
                     #TF_VAR_az_client_id: $(az-client-id)
                     #TF_VAR_az_client_secret: $(az-client-secret)
                   inputs:
                     provider: 'azurerm'
                     command: 'apply'
                     #commandOptions: '-input=false -var "password=$(TF_VAR_password)" -var "controller_ip=$(TF_VAR_controller_ip)" -var "username=$(TF_VAR_username)"' 
-                    commandOptions: '-var "avtx_admin_password=$(ctrl-password)" -var "avtx_controller_ip=$(controller-ip)" -var "avtx_admin_user=$(username)"'
+                    #commandOptions: '-var "avtx_admin_password=$(ctrl-password)" -var "avtx_controller_ip=$(controller-ip)" -var "avtx_admin_user=$(username)"'
                     #commandOptions: '-var "avtx_admin_password=$(TF_VAR_password)" -var "avtx_controller_ip=$(TF_VAR_controller-ip)" -var "avtx_admin_user=$(TF_VAR_username)"'
                     environmentServiceNameAzureRM: 'atulavtx-sst2'
