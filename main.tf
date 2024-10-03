@@ -16,9 +16,9 @@ module "mc_transit" {
   gw_name                = var.gw_name        # sets gw name
   ha_gw                  = var.ha_gw
   resource_group = "atulrg-customiam"               # If using SP at RG level
-  learned_cidr_approval = true
-  learned_cidrs_approval_mode = "gateway"
-  enable_egress_transit_firenet = false
+  #learned_cidr_approval = true
+  #learned_cidrs_approval_mode = "gateway"
+  #enable_egress_transit_firenet = false
   connected_transit = "false"  #  needed to remove egress ^^
 }
 
